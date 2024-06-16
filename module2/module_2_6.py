@@ -13,5 +13,5 @@ print(result2)
 
 assert(single_root_words('rich', 'richiest', 'orichalcum', 'cheers', 'richies')
        == ['richiest', 'orichalcum', 'richies'])
-assert (single_root_words('Disablement', 'Able', 'Mable', 'Disable', 'Bagel')
+assert(single_root_words('Disablement', 'Able', 'Mable', 'Disable', 'Bagel')
         == ['Able', 'Disable'])
