@@ -12,3 +12,33 @@ class House:
        return self.number_of_floors
     def __str__(self):
         return f"Название: {self.name}, кол-во этажей: {self.number_of_floors}."
+
+    @staticmethod
+    def  getNumberOfFloors(obj):
+        if isinstance(obj, House):
+            return obj.number_of_floors
+        elif isinstance(obj, int):
+            return obj
+        else:
+            return 0
+
+    def __eq__(self, other):
+        return House.getNumberOfFloors(self) == House.getNumberOfFloors(other)
+    def __lt__(self, other):
+        return House.getNumberOfFloors(self) < House.getNumberOfFloors(other)
+    def __le__(self, other):
+        return House.getNumberOfFloors(self) <= House.getNumberOfFloors(other)
+    def __gt__(self, other):
+        return House.getNumberOfFloors(self) > House.getNumberOfFloors(other)
+    def __ge__(self, other):
+        return House.getNumberOfFloors(self) >= House.getNumberOfFloors(other)
+    def __ne__(self, other):
+        return House.getNumberOfFloors(self) != House.getNumberOfFloors(other)
+    def __add__(self, other):
+        self.number_of_floors = House.getNumberOfFloors(self) + House.getNumberOfFloors(other)
+        return self
+    def __radd__(self, value):
+        return self.__add__(value)
+    def __iadd__(self, value):
+        return self.__add__(value)
+
