@@ -24,6 +24,9 @@ class Video:
         self.adult_mode = adult_mode
         self.time_now = time_now
 
+    def __str__(self):
+        return self.title
+
     def __eq__(self, other):
         if isinstance(other, Video):
             return self.title == other.title
@@ -53,7 +56,7 @@ class UrTube:
         found = []
         for i in self.videos:
             if word.lower() in i.title.lower():
-                found.append(i)
+                found.append(i.title)
         return found
 
     def log_out(self):
