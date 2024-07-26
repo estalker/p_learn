@@ -1,22 +1,24 @@
 class Plant:
+    edible = False
+
     def __init__(self, _name):
-        self.edible = False
         self.name = _name
 
 
 class Animal:
+    alive = True
+    fed = False
+
     def __init__(self, _name):
-        self.alive = True
-        self.fed = False
         self.name = _name
 
     def eat(self, food: Plant):
         if food.edible:
             print(f"{self.name} съел {food.name}")
-            self.fed = True
+            Animal.fed = True
         else:
             print(f"{self.name} не стал есть {food.name}")
-            self.alive = False
+            Animal.alive = False
 
 
 class Mammal(Animal):
@@ -28,14 +30,15 @@ class Predator(Animal):
 
 
 class Fruit(Plant):
+    edible = True
+
     def __init__(self, _name):
         super().__init__(_name)
-        self.edible = True
-
 
 
 class Flower(Plant):
-   pass
+    pass
+
 
 a1 = Predator('Волк с Уолл-Стрит')
 a2 = Mammal('Хатико')
@@ -51,7 +54,6 @@ a1.eat(p1)
 a2.eat(p2)
 print(a1.alive)
 print(a2.fed)
-
 
 # Задача "Съедобное, несъедобное":
 # Разнообразие животного мира давно будоражит умы человечества. Царства, классы, виды... Почему бы и нам не попробовать выстроить что-то подобное используя наследования классов?
