@@ -14,19 +14,18 @@ class Product:
 class Shop:
     __file_name = 'products.txt'
 
-    def get_products(self):
+    def __init__(self):
         if not os.path.exists(Shop.__file_name):
             open(Shop.__file_name, 'w').close()
+    def get_products(self):
         f = open(Shop.__file_name, "r")
         text = f.read()
         f.close()
         return text
 
     def add(self, *products):
-        if not os.path.exists(Shop.__file_name):
-            open(Shop.__file_name, 'w').close()
         f = open(self.__file_name, "r")
-        lines = f.readlines()
+        lines = self.get_products().split('\n')
         f.close()
 
         new_products = []
