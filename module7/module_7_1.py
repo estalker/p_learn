@@ -17,6 +17,7 @@ class Shop:
     def __init__(self):
         if not os.path.exists(Shop.__file_name):
             open(Shop.__file_name, 'w').close()
+
     def get_products(self):
         f = open(Shop.__file_name, "r")
         text = f.read()
