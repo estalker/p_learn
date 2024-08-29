@@ -26,7 +26,7 @@ class Cafe:
 
     def guest_arrival(self, *guests):
         for i, g in enumerate(guests):
-            vacant = self.firstOrNone(tables)
+            vacant = next((t for t in tables if t.guest is None), None)
             if vacant is None:
                 self.queue.put(g)
                 print(f"{g.name} в очереди")
@@ -46,13 +46,6 @@ class Cafe:
                     t.guest = self.queue.get()
                     print(f"{t.guest.name} вышел(-ла) из очереди и сел(-а) за стол номер {t.number}")
                     t.guest.start()
-
-    def firstOrNone(self, tables):
-        vac_indexes = list(t.guest is None for t in tables)
-        if any(i is True for i in vac_indexes):
-            return tables[vac_indexes.index(True)]
-        else:
-            return None
 
 
 # Создание столов
