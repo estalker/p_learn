@@ -23,14 +23,18 @@ class Knight(Thread):
         for i in range(Knight.number_of_foes, 0, -self.power):
             days = days + 1
             sleep(1)
-            do_print(f"{self.name} сражается {days} день(дня)..., осталось {i - self.power} воинов.")
+            do_print(f"{self.name} сражается {days} день(дня)..., осталось {max(i - self.power, 0)} воинов.")
         do_print(f"{self.name}  одержал победу спустя {days} дней(дня)")
 
 
-first_knight = Knight('Sir Lancelot', 10)
-second_knight = Knight("Sir Galahad", 20)
+#first_knight = Knight('Sir Lancelot', 10)
+#second_knight = Knight("Sir Galahad", 20)
 
-threads = [first_knight, second_knight]
+#threads = [first_knight, second_knight]
+
+first_knight = Knight('Sir Lancelot', 45)
+
+threads = [first_knight]
 
 for t in threads:
     t.start()
