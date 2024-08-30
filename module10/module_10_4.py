@@ -33,6 +33,7 @@ class Cafe:
             else:
                 vacant.guest = g
                 print(f"{g.name} сел(-а) за стол номер {vacant.number}")
+                g.start()
 
     def discuss_guests(self):
         while not self.queue.empty() or any(t.guest is not None for t in self.tables):
