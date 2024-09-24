@@ -1,0 +1,16 @@
+2024-09-24 15:17:42,913 | WARNING | Неверный тип данных для объекта Runner
+Traceback (most recent call last):
+  File "C:\Projects\UrbanUni\Python\p_learn\module12\tests_12_4.py", line 24, in test_run
+    r = Runner(123)
+        ^^^^^^^^^^^
+  File "C:\Projects\UrbanUni\Python\p_learn\module12\rt_with_exceptions.py", line 6, in __init__
+    raise TypeError(f'Имя может быть только строкой, передано {type(name).__name__}')
+TypeError: Имя может быть только строкой, передано int
+2024-09-24 15:17:42,914 | WARNING | Неверная скорость для Runner
+Traceback (most recent call last):
+  File "C:\Projects\UrbanUni\Python\p_learn\module12\tests_12_4.py", line 12, in test_walk
+    r = Runner("Атлет 1", -5)
+        ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Projects\UrbanUni\Python\p_learn\module12\rt_with_exceptions.py", line 11, in __init__
+    raise ValueError(f'Скорость не может быть отрицательной, сейчас {speed}')
+ValueError: Скорость не может быть отрицательной, сейчас -5
