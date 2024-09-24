@@ -1,12 +1,11 @@
 import unittest
-import tests_12_1
-import tests_12_2
+import tests_12_3
 
 
 r_and_tTS = unittest.TestSuite()
 
-r_and_tTS.addTest(unittest.TestLoader().loadTestsFromTestCase(tests_12_1.RunnerTest))
-r_and_tTS.addTest(unittest.TestLoader().loadTestsFromTestCase(tests_12_2.TournamentTest))
+r_and_tTS.addTest(unittest.TestLoader().loadTestsFromTestCase(tests_12_3.RunnerTest))
+r_and_tTS.addTest(unittest.TestLoader().loadTestsFromTestCase(tests_12_3.TournamentTest))
 
 runner = unittest.TextTestRunner(verbosity=2)
 

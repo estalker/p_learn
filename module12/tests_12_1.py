@@ -3,9 +3,6 @@ from runner import Runner
 
 
 class RunnerTest(unittest.TestCase):
-    is_frozen = False
-
-    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_walk(self):
         r = Runner("Атлет 1")
         for i in range(10):
@@ -13,7 +10,6 @@ class RunnerTest(unittest.TestCase):
 
         self.assertEqual(r.distance, 50)
 
-    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_run(self):
         r = Runner("Атлет 2")
         for i in range(10):
@@ -21,7 +17,6 @@ class RunnerTest(unittest.TestCase):
 
         self.assertEqual(r.distance, 100)
 
-    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_challenge(self):
         w = Runner("Атлет 1")
         r = Runner("Атлет 2")

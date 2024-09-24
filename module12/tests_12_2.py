@@ -3,8 +3,6 @@ from runner_and_tournament import Runner, Tournament
 
 
 class TournamentTest(unittest.TestCase):
-    is_frozen = True
-
     @classmethod
     def setUpClass(cls):
         cls.all_results = []
@@ -22,7 +20,6 @@ class TournamentTest(unittest.TestCase):
                 print(f"{j}:{entry}")
             print()
 
-    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_H_N(self):
         t = Tournament(5,self.n, self.h)
         all_results = t.start()
@@ -30,14 +27,12 @@ class TournamentTest(unittest.TestCase):
         last = max(all_results.keys())
         self.assertTrue(self.n == all_results[last])
 
-    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_A_N(self):
         t = Tournament(5,self.n, self.a)
         all_results = t.start()
         self.all_results.append(all_results)
         last = max(all_results.keys())
 
-    @unittest.skipIf(is_frozen, 'Тесты в этом кейсе заморожены')
     def test_H_A_N(self):
         t = Tournament(5,self.n, self.a, self.h)
         all_results = t.start()
