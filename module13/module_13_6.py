@@ -4,7 +4,7 @@ from aiogram.filters.command import Command
 from aiogram.filters import Filter
 from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.storage.memory import MemoryStorage
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
+from aiogram.types import ReplyKeyboardMarkup, KeyboardButton,ReplyKeyboardRemove
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
 key = open('token_key.secret', 'r').read()
@@ -46,7 +46,8 @@ async def get_formulas(call):
 async def set_age(call, state):
     await call.message.answer("Введите свой возраст:")
     await state.set_state(UserState.age)
-    await call.message()
+    await call.answer()
+
 
 @dp.message(UserState.age)
 async def set_growth(message, state):
@@ -67,8 +68,7 @@ async def send_calories(message, state):
     await state.update_data(weight=message.text)
     data = await state.get_data()
     cals = 10 * float(data['weight']) + 6.25 * float(data['growth']) - 5 * float(data['age']) + 5;
-    await message.answer(f"Ваша норма калорий {cals}")
-    await state.finish()
+    await message.answer(f"Ваша норма калорий {cals}", reply_markup=ReplyKeyboardRemove())
 
 
 async def main():
