@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, DeclarativeBase
 
-engine = create_engine("sqlite:///taskmanager.db")
+engine = create_engine("sqlite:///../taskmanager.db")
 
 SessionLocal = sessionmaker(bind=engine)
 
