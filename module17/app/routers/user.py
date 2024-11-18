@@ -5,7 +5,7 @@ from sqlalchemy.orm import Session
 from module17.app.backend.db_depends import get_db
 # Аннотации, Модели БД и Pydantic.
 from typing import Annotated
-from module17.app.models import User
+from module17.app.models import User, Task
 from module17.app.schemas import CreateUser, UpdateUser
 # Функции работы с записями.
 from sqlalchemy import insert, select, update, delete
@@ -33,6 +33,16 @@ async def user_by_id(db: Annotated[Session, Depends(get_db)], user_id: int):
         )
     else:
         return user
+
+
+@router.get("/user_id/tasks")
+async def tasks_by_user_id(db: Annotated[Session, Depends(get_db)], user_id: int):
+    user = db.scalar(select(User).where(User.id == user_id))
+    if user is None:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User was not found")
+    else:
+        tasks = db.scalars(select(Task).where(Task.user_id == user_id)).all()
+        return tasks
 
 
 @router.post("/create")
@@ -68,11 +78,14 @@ async def update_user(db: Annotated[Session, Depends(get_db)], update_user: Upda
     return {"status_code": status.HTTP_200_OK,
             "transaction": "User update is successful!"}
 
+
 @router.delete("/delete")
 async def delete_user(db: Annotated[Session, Depends(get_db)], user_id: int):
     user = db.scalar(select(User).where(User.id == user_id))
     if user is None:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User was not found")
+
+    db.execute(delete(Task).where(Task.user_id == user_id))
 
     db.execute(delete(User).where(User.id == user_id))
 
